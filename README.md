@@ -3,7 +3,7 @@
 ### Загрузка в Postman
 #### 1. Авторизоваться в GitHub, клонировать себе данный репозиторий
 #### 2. В Postman создать новое APIs ('Create an API')
-#### 3. Подключиться к GitHub для нсозданного API - на вкладке настроек ('About this API') в блоке 'Connect repository' выбрать 'GitHub'
+#### 3. Подключиться к GitHub для созданного API - на вкладке настроек ('About this API') в блоке 'Connect repository' выбрать 'GitHub'
 #### 4. Подключиться к репозиторию - выбрать данный репозиторий и ветку main, нажать 'Connect Repository'
 #### 5. Вручную скачать файлы '5.2_khadarkevich.csv' и 'post_task_resource.postman_environment.json' из данного репозитория
 #### 6. Файл 'post_task_resource.postman_environment.json' загрузить в Environment в Postman (Environments - Import)
