@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "d0e774c6-cdd7-44e1-958e-9d84b227329c",
+		"name": "post_task-resource",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "32227865-d0e774c6-cdd7-44e1-958e-9d84b227329c"
+	},
+	"item": [
+		{
+			"name": "happy path",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bc17aa55-1b5b-4e29-a3e2-86f298e23ebd",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains object\", function () {\r",
+							" var jsonData = pm.response.json();\r",
+							" pm.expect(jsonData).to.be.an(\"object\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Accept header is */*\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Accept')).to.eql('*/*');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "abad9a90-d378-4cf7-b477-3e9098773fcf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwNzkzNTUwMiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDc4NDkxMDJ9.7_m1YZ3c1nnC5D_LxPI2fWffs_2RUdRgn3XUX-p9RRoW066t5ihN5kVok2K5rJ9B9knNxxvmMVMU3SPZ9mwGvQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"{{text}}+text\",\n  \"answer\": \"{{answer}}+answer\",\n  \"title\": \"{{title}}+title\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sadly-path without bearer-token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "644ab037-1a79-4e9f-8019-b46a8da34973",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is empty\", function () {\r",
+							"  var jsonData = pm.response.text();\r",
+							"  pm.expect(jsonData).to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Accept header is */*\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Accept')).to.eql('*/*');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "1c848642-b999-464b-b4fc-6ffb262fe7f0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwNzU2MjAzMywiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDc0NzU2MzN9.GlajsVNbM5OWpc55f5sOWvi8HpkMWSUngwq_X_tuY-Vg_b9eBYRTvJQL6mdWS8mOxDnirtX3SdoWqEQSB7f8tw",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"{{text}}+text\",\n  \"answer\": \"{{answer}}+answer\",\n  \"title\": \"{{title}}+title\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sadly-path with invalid text",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f41d4e5-6cfc-4fe1-a8dc-99a3d74ffa2b",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is empty\", function () {\r",
+							"  var jsonData = pm.response.text();\r",
+							"  pm.expect(jsonData).to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Accept header is */*\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Accept')).to.eql('*/*');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "411b99de-998f-4dba-af01-fe1e08b7b036",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwNzkzNTUwMiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDc4NDkxMDJ9.7_m1YZ3c1nnC5D_LxPI2fWffs_2RUdRgn3XUX-p9RRoW066t5ihN5kVok2K5rJ9B9knNxxvmMVMU3SPZ9mwGvQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": {{sadly-path}},\n  \"answer\": \"{{answer}}+answer\",\n  \"title\": \"{{title}}+title\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sadly-path with invalid answer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1dfb1347-280d-49f4-8b72-9e46214d5409",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is empty\", function () {\r",
+							"  var jsonData = pm.response.text();\r",
+							"  pm.expect(jsonData).to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Accept header is */*\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Accept')).to.eql('*/*');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "5b47c586-9e04-4362-aff5-783340f68152",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwNzkzNTUwMiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDc4NDkxMDJ9.7_m1YZ3c1nnC5D_LxPI2fWffs_2RUdRgn3XUX-p9RRoW066t5ihN5kVok2K5rJ9B9knNxxvmMVMU3SPZ9mwGvQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"{{text}}+text\",\n  \"answer\": {{sadly-path}},\n  \"title\": \"{{title}}+title\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sadly-path with invalid title",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bfe9d7d6-e998-487a-955a-6a367b36582e",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is empty\", function () {\r",
+							"  var jsonData = pm.response.text();\r",
+							"  pm.expect(jsonData).to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Accept header is */*\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Accept')).to.eql('*/*');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "d01164b3-0b47-4ad0-9a4f-ae4dd8c61e91",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcwNzkzNTUwMiwiYXV0aCI6IlJPTEVfQURNSU4iLCJpYXQiOjE3MDc4NDkxMDJ9.7_m1YZ3c1nnC5D_LxPI2fWffs_2RUdRgn3XUX-p9RRoW066t5ihN5kVok2K5rJ9B9knNxxvmMVMU3SPZ9mwGvQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"{{text}}+text\",\n  \"answer\": \"{{answer}}+answer\",\n  \"title\": {{sadly-path}}\n}"
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
